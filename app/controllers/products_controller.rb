@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      flash[:notice] = "Product has been saved successfully"
+      flash.now[:notice] = "Product has been saved successfully"
       redirect_to root_path
     else
       flash[:alert] = "Product has not been saved. Please try again"
@@ -31,7 +31,7 @@ class ProductsController < ApplicationController
   def update
     
     if @product.update(product_params)
-      flash[:notice] = "Product has been updated successfully"
+      flash.now[:notice] = "Product has been updated successfully"
       redirect_to root_path
     else
       flash[:alert] = "Product has not been updated.  Please try again"
