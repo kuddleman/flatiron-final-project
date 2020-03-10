@@ -15,8 +15,13 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    @product.save
-    redirect_to root_path
+    if @product.save
+      flash[:notice] = "Product has been saved successfully"
+      redirect_to root_path
+    else
+      flash[:alert] = "Product has not been saved. Please try again"
+      render :new
+    end
   end
 
   def edit
@@ -25,8 +30,13 @@ class ProductsController < ApplicationController
 
   def update
     
-    @product.update(product_params)
-    redirect_to root_path
+    if @product.update(product_params)
+      flash[:notice] = "Product has been updated successfully"
+      redirect_to root_path
+    else
+      flash[:alert] = "Product has not been updated.  Please try again"
+      render :edit
+    end
   end
 
   def destroy
