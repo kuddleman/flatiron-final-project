@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    redirect_to root_path if current_user
   end
 
   def create
@@ -8,7 +9,7 @@ class SessionsController < ApplicationController
 
     # 2. Check if the user can be authenticated using the password provided
     if user && user.authenticate(params[:password])
-      cookies.signed[:user_id] = user.user_id
+      cookies.signed[:user_id] = user_id
       flash[:notice] = "Sign in successful!"
       redirect_to root_path
     else
@@ -21,5 +22,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    cookies.delete :user_id
+    flash[:notice] = "You have been signed out"
+    redirect_to root_path
   end
 end
