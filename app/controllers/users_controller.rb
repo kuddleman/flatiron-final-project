@@ -11,6 +11,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      # next line implements automatic sign in upon sign up
+      cookies.signed[:user_id] = @user.id
       flash[:notice] = "Signed up successfully"
       redirect_to root_path
     else  
