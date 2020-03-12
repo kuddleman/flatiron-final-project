@@ -10,10 +10,10 @@ class Product < ApplicationRecord
 
 
   belongs_to :user
-  
+
   #add dependent destroy so when product is deleted,
   # its corresponding comments will be deleted as well
-  has_many :comments, dependent :destoy
+  has_many :comments, dependent: :destroy
 
   def owned_by?(owner) 
     user == owner

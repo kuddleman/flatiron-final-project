@@ -7,13 +7,16 @@ Rails.application.routes.draw do
   get '/signin',   to:  'sessions#new'
   post '/signin',  to:  'sessions#create'
   delete '/signout', to: 'sessions#destroy', as: 'session'
-  
+
   resources :users, only: [:create]
 
   
   root to: "products#index"
-
-  resources :products
+  # we can't have a comment without a product,
+  # so comments resource is NESTED in products resource
+  resources :products do
+    resources :comments, only: [:create]
+  end
 
   # get '/products',          to: 'products#index'
   # get '/products/new',      to: 'products#new', as: 'new_product'

@@ -54,6 +54,7 @@ class ProductsController < ApplicationController
     unless @product.owned_by?(current_user)
       flash[:alert] = "Access denied"
       redirect_to root_path
+    end
   end
 
   def find_product
