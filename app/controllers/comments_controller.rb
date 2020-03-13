@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 
   def create
     #get product object first, and use it to create comment
-    @comment = product.comments.build(comment_params)
+    @comment = @product.comments.build(comment_params)
     @comment.user = current_user
     # the above is the same as @comment.user.id = current_user.id
 

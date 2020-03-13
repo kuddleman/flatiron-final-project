@@ -51,8 +51,9 @@
           <h2 class="comment-header">Customer comments (<%= @comments.count %>)</h2>
         </div>
         
-        #below, the reject method rejects all records that have not been saved
-        #before doing the for each.
+         <! --below, the reject method rejects all records that have not been saved
+        before doing the for each. -->
+        
         <% persisted_comments(@comments).each do |comment| %>
            <%= render partial: 'comments/comment', object: comment %>
         <% end %>
