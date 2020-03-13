@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
       #this is a redirect to product show page.
       # @product is a shortcut for product_path(@product.id)
     else
-      @comment = @poduct.comment
+      @comments = @poduct.comments
       flash.now[:alert] = "Comment has not been created"
       render 'products/show'
     end

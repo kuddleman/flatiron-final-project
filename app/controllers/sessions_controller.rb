@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 
     # 2. Check if the user can be authenticated using the password provided
     if user && user.authenticate(params[:password])
-      cookies.signed[:user_id] = user
+      cookies.signed[:user_id] = user.id
       flash[:notice] = "Sign in successful!"
       redirect_to root_path
     else
