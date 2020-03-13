@@ -8,6 +8,9 @@ class ProductsController < ApplicationController
 
   def show
     @comment = @product.comments.build
+    
+    #get all comments associated with a particular product to display those comments
+    @comments = @product.comments
   end
 
   def new
